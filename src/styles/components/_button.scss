@@ -1,0 +1,56 @@
+$color_primary: #5887dd !default;
+$color_primary--light: #ffffff !default;
+$color_primary--dark: #000000 !default;
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  border: 1px solid $color_primary;
+  padding: 0 20px;
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: $color_primary;
+  position: relative;
+  transition: color 0.3s ease, background-color 0.3s ease;
+  cursor: pointer;
+
+  span {
+    position: relative;
+
+    i {
+      margin-left: 10px;
+      font-size: 16px;
+    }
+  }
+
+  &::before {
+    content: "";
+    width: 0%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: $color_primary;
+    transition: width 0.3s ease;
+  }
+
+  &:hover {
+    color: $color_primary--light;
+
+    &::before {
+      width: 100%;
+    }
+  }
+
+  &--icon-before {
+    span {
+      i {
+        margin-left: 0;
+        margin-right: 10px;
+      }
+    }
+  }
+}

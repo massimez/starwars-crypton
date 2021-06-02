@@ -1,0 +1,68 @@
+$text__family--sans: "Helvetica Neue", sans-serif;
+// Colours
+$text__colour--base: #ffffff !default;
+$text__colour--alpha: #990000 !default;
+$text__colour--beta: #990000 !default;
+$text__colour--gamma: #333333 !default;
+$text__colour--delta: #333333 !default;
+
+@mixin text(
+  $size,
+  $line,
+  $margin: 0,
+  $family: $text__family--sans,
+  $color: $text__color--base,
+  $weight: normal
+) {
+  font-size: $size;
+  line-height: ($line/$size);
+  font-family: $family;
+  color: $color;
+  margin-bottom: $margin;
+}
+
+html {
+  font-size: $base__font-size * 1px;
+}
+
+body {
+  @include text($base__font-size, $base__line, $color: $text__colour--base);
+}
+
+h1 {
+  @include text(
+    $text__size--alpha,
+    $text__line--alpha,
+    15,
+    $color: $text__colour--alpha,
+    $weight: bold
+  );
+}
+
+h2 {
+  @include text(
+    $text__size--beta,
+    $text__line--beta,
+    15,
+    $color: $text__colour--beta
+  );
+}
+
+h3 {
+  @include text(
+    $text__size--gamma,
+    $text__line--gamma,
+    15,
+    $color: $text__colour--gamma
+  );
+  text-transform: uppercase;
+}
+
+p {
+  @include text(
+    $text__size--delta,
+    $text__line--delta,
+    10,
+    $color: $text__colour--delta
+  );
+}

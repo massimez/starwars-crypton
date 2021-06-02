@@ -1,0 +1,38 @@
+@import "../font/font";
+
+body {
+  background-image: url("../../assets/1388089.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  margin-left: 2.5%;
+  margin-right: 2.5%;
+}
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+.flex--space {
+  justify-content: space-between;
+}
+.flex--center {
+  justify-content: center;
+}
+.flex--end {
+  justify-content: flex-end;
+}
+.flex--start {
+  justify-content: flex-start;
+}
+.flex--justify-self-end {
+  margin-left: auto;
+}
+.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+h1 {
+  font-family: Starwars, Times, serif;
+  color: white;
+}
