@@ -1,20 +1,22 @@
 import "./App.css";
+import React from 'react';
 import {
   BrowserRouter as Router,
   Route,
   Switch,
   Redirect,
 } from "react-router-dom";
-import Personnages from "./pages/Personnages";
+import Characters from "./pages/Characters";
 import Favorite from "./pages/Favorite";
 import Error404 from "./pages/Error404";
+
 
 function App() {
   return (
     <Router>
       <Switch>
         <Route exact path="/">
-          <Personnages />
+          <Characters />
         </Route>
         <Route exact path="/fav">
           <Favorite />

@@ -12,7 +12,7 @@ $color_primary--dark: #000000 !default;
   font-size: 12px;
   letter-spacing: 1px;
   text-transform: uppercase;
-  color: $color_primary;
+  color: red;
   position: relative;
   transition: color 0.3s ease, background-color 0.3s ease;
   cursor: pointer;
@@ -30,7 +30,6 @@ $color_primary--dark: #000000 !default;
     content: "";
     width: 0%;
     height: 100%;
-    position: absolute;
     top: 0;
     left: 0;
     background-color: $color_primary;
@@ -38,7 +37,7 @@ $color_primary--dark: #000000 !default;
   }
 
   &:hover {
-    color: $color_primary--light;
+    color: red;
 
     &::before {
       width: 100%;

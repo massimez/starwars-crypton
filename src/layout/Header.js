@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext} from "react";
 import { Link } from "react-router-dom";
 import "../styles/screen.scss";
 import { IoMdHeart } from "react-icons/io";
@@ -15,7 +15,7 @@ const Header = () => {
           />
         </Link>
         <Link to="/fav">
-          <IoMdHeart className="card__icon--red" size="40px" />
+          <div ><IoMdHeart className="card__icon--red" size="40px" />My favorites</div>
         </Link>
       </div>
       <div className="input-size"></div>
