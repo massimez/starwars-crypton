@@ -1,19 +1,42 @@
-import React from "react";
-import {IoMdHeart} from "react-icons/io" 
-const CardCharacter = () => {
+import React, { useState ,useEffect} from "react";
+import { IoMdHeart } from "react-icons/io";
+import { addToFavorite, getFavorites } from "../modules/favorites";
+import axios from 'axios'
+
+const CardCharacter = (props) => {
+  const [Fav, setFav] = useState(getFavorites());
+  const [homeland, sethomeland] = useState();
+
+  let __FOUND = Fav.find(function (post, index) {
+    if (post.name === props.name) return true;
+  });
+  axios(props.planet).then(res => sethomeland(res.data.name))
   return (
     <>
-      <div className="card flex flex--center">
+      <div className="card">
         <img
-          src="https://avataaars.io/?avatarStyle=Circle&topType=LongHairStraight&accessoriesType=Blank&hairColor=BrownDark&facialHairType=Blank&clotheType=BlazerShirt&eyeType=Default&eyebrowType=Default&mouthType=Default&skinColor=Light"
+          src={`https://starwars-visualguide.com/assets/img/characters/${props.id}.jpg`}
           alt="Avatar"
         />
         <div>
           <h4>
-            <b>Jane Doe</b>
+            <b>{props.name}</b>
           </h4>
-          <p>Interior Designer</p>
-         <IoMdHeart className="card__icon--red"  size="40px"/>
+          <p>{homeland}</p>
+          {__FOUND ? (
+            <div>
+              <IoMdHeart className="card__icon--red" size="40px" />
+            </div>
+          ) : (
+            <div
+              onClick={() => {
+                addToFavorite(props.char);
+                setFav(getFavorites())
+              }}
+            >
+              <IoMdHeart className="card__icon--black" size="40px" />
+            </div>
+          )}
         </div>
       </div>
     </>
