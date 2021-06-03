@@ -1,8 +1,9 @@
 .pagination {
   display: inline-block;
+  cursor: pointer;
 }
 
-.pagination a {
+.pagination button {
   color: black;
   float: left;
   padding: 8px 16px;
@@ -12,12 +13,12 @@
   margin: 0 4px;
 }
 
-.pagination a.active {
-  background-color: #4caf50;
+.pagination button.active {
+  background-color: #272927;
   color: white;
   border: 1px solid #4caf50;
 }
 
-.pagination a:hover:not(.active) {
+.pagination button:hover:not(.active) {
   background-color: #ddd;
 }
