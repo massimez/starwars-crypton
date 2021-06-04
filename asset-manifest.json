@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/starwars-crypton/static/css/main.be7832ee.chunk.css",
+    "main.css": "/starwars-crypton/static/css/main.9e4207fd.chunk.css",
     "main.js": "/starwars-crypton/static/js/main.c222417f.chunk.js",
     "main.js.map": "/starwars-crypton/static/js/main.c222417f.chunk.js.map",
     "runtime-main.js": "/starwars-crypton/static/js/runtime-main.fc31a433.js",
@@ -8,14 +8,14 @@
     "static/js/2.ccf923ec.chunk.js": "/starwars-crypton/static/js/2.ccf923ec.chunk.js",
     "static/js/2.ccf923ec.chunk.js.map": "/starwars-crypton/static/js/2.ccf923ec.chunk.js.map",
     "index.html": "/starwars-crypton/index.html",
-    "static/css/main.be7832ee.chunk.css.map": "/starwars-crypton/static/css/main.be7832ee.chunk.css.map",
+    "static/css/main.9e4207fd.chunk.css.map": "/starwars-crypton/static/css/main.9e4207fd.chunk.css.map",
     "static/js/2.ccf923ec.chunk.js.LICENSE.txt": "/starwars-crypton/static/js/2.ccf923ec.chunk.js.LICENSE.txt",
     "static/media/screen.scss": "/starwars-crypton/static/media/StarJedi-DGRW.4c37e50c.ttf"
   },
   "entrypoints": [
     "static/js/runtime-main.fc31a433.js",
     "static/js/2.ccf923ec.chunk.js",
-    "static/css/main.be7832ee.chunk.css",
+    "static/css/main.9e4207fd.chunk.css",
     "static/js/main.c222417f.chunk.js"
   ]
 }
