@@ -13,7 +13,7 @@ import Error404 from "./pages/Error404";
 
 function App() {
   return (
-    <Router basename={process.env.PUBLIC_URL}>
+    <Router>
       <Switch>
         <Route exact path="/">
           <Characters />
