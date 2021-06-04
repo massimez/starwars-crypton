@@ -9,14 +9,3 @@ export function getFavorites() {
   return JSON.parse(data);
 }
 
-export function deleteFavorite(character) {
-  localStorage.setItem("fav", [character]);
-  const data = localStorage.getItem("fav");
-  console.log(data);
-}
-
-export function clearFavorite(character) {
-  localStorage.setItem("fav", [character]);
-  const data = localStorage.getItem("fav");
-  console.log(data);
-}
