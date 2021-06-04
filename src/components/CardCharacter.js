@@ -7,7 +7,7 @@ const CardCharacter = (props) => {
   const [Fav, setFav] = useState(getFavorites());
   const [homeland, sethomeland] = useState();
 
-  let __FOUND = Fav.find(function (post, index) {
+  let __FOUND = Fav.find(function (post) {
     if (post.name === props.name) return true;
     return false;
   });
