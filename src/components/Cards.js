@@ -21,7 +21,7 @@ const Cards = () => {
           settotalCharacters(res.data.count);
           if (res.data.next !== null) {
             totaldata = totaldata.concat(res.data.results);
-            getCharacters(res.data.next);
+            getCharacters(res.data.next.slice(0, 4) + "s"+ res.data.next.slice(4));
           } else {
             totaldata = totaldata.concat(res.data.results);
             totaldata.forEach((item, i = 1) => {
