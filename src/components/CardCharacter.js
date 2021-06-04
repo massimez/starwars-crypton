@@ -11,7 +11,7 @@ const CardCharacter = (props) => {
     if (post.name === props.name) return true;
     return false;
   });
-  axios(props.planet).then(res => sethomeland(res.data.name))
+  axios(props.planet).then(res => sethomeland(res.data.name.slice(0, 4) + "s"+ res.data.next.slice(4)))
   return (
     <>
       <div className="card">
