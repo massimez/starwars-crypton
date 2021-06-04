@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/starwars-crypton/static/css/main.be7832ee.chunk.css",
-    "main.js": "/starwars-crypton/static/js/main.45f7297a.chunk.js",
-    "main.js.map": "/starwars-crypton/static/js/main.45f7297a.chunk.js.map",
+    "main.js": "/starwars-crypton/static/js/main.c222417f.chunk.js",
+    "main.js.map": "/starwars-crypton/static/js/main.c222417f.chunk.js.map",
     "runtime-main.js": "/starwars-crypton/static/js/runtime-main.fc31a433.js",
     "runtime-main.js.map": "/starwars-crypton/static/js/runtime-main.fc31a433.js.map",
     "static/js/2.ccf923ec.chunk.js": "/starwars-crypton/static/js/2.ccf923ec.chunk.js",
@@ -16,6 +16,6 @@
     "static/js/runtime-main.fc31a433.js",
     "static/js/2.ccf923ec.chunk.js",
     "static/css/main.be7832ee.chunk.css",
-    "static/js/main.45f7297a.chunk.js"
+    "static/js/main.c222417f.chunk.js"
   ]
 }
