@@ -37,3 +37,13 @@ h1 {
   font-family: Starwars, Times, serif;
   color: white;
 }
+
+@media screen and (max-width: 480px) {
+  .img__header {
+    width: 100%;
+  }
+  .flex {
+    justify-content: center;
+    align-content: center;
+  }
+}
