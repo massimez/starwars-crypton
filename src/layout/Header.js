@@ -12,6 +12,7 @@ const Header = () => {
           <img
             src="https://fontmeme.com/permalink/210602/5a25055fcd1d6b8db47107bfac1f58a5.png"
             alt="Starwars"
+            className="img__header"
           />
         </Link>
         <Link to="/fav">
