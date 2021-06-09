@@ -4,98 +4,133 @@ import { NavPagination } from "./NavPagination";
 import axios from "axios";
 
 const Cards = () => {
-  const [Characters, setCharacters] = useState();
-  const charactersPerPage = 10;
-  const [totalCharacters, settotalCharacters] = useState();
   const [loading, setloading] = useState(false);
+  const [numberOfCharacter, setNumberOfCharacter] = useState();
+  const [Characters, setCharacters] = useState();
+  const [filteredDataByGender, setFilteredDataByGender] = useState([]);
+  const [searchedByName, setsearchedByName] = useState();
+  //Pagination
+  let charactersPerPage = 10;
   const [currentPage, setCurrentPage] = useState(1);
-  const [filteredData, setFilteredData] = useState([]);
+  const indexOfLast = currentPage * charactersPerPage;
+  const indexOfFirstPost = indexOfLast - charactersPerPage;
+  const PaginatedFiltredCharacters = filteredDataByGender.slice(
+    indexOfFirstPost,
+    indexOfLast
+  );
 
   useEffect(() => {
     setloading(true);
-    let totaldata = [];
-    const url = `https://swapi.dev/api/people/`;
-    async function getCharacters(url) {
-      await axios(url)
-        .then((res) => {
-          settotalCharacters(res.data.count);
-          if (res.data.next !== null) {
-            totaldata = totaldata.concat(res.data.results);
-            getCharacters(res.data.next.slice(0, 4) + "s"+ res.data.next.slice(4));
-          } else {
-            totaldata = totaldata.concat(res.data.results);
-            totaldata.forEach((item, i = 1) => {
-              item.id = i + 1;
-            });
-            setCharacters(totaldata);
-            setFilteredData(totaldata);
-            setloading(false);
-          }
+    let AllCharacters = [];
+    let URLs = [
+      "https://swapi.dev/api/people/?page=1",
+      "https://swapi.dev/api/people/?page=2",
+      "https://swapi.dev/api/people/?page=3",
+      "https://swapi.dev/api/people/?page=4",
+      "https://swapi.dev/api/people/?page=5",
+      "https://swapi.dev/api/people/?page=6",
+      "https://swapi.dev/api/people/?page=7",
+      "https://swapi.dev/api/people/?page=8",
+      "https://swapi.dev/api/people/?page=9",
+    ];
+    
+    const fetchDataAllUrls = (URLs) => {
+      Promise.all(URLs.map(FetchDataOneUrl)).then(() => {
+        setloading(false);
+        //Добавление id из свойства url
+        AllCharacters.forEach((item) => {
+          item.id = getIdByURL(item.url);
+        });
+        setCharacters(AllCharacters);
+        setFilteredDataByGender(AllCharacters);
+      });
+    };
+    async function FetchDataOneUrl(URL) {
+      await axios
+        .get(URL)
+        .then((response) => {
+          AllCharacters = AllCharacters.concat(response.data.results);
+          setNumberOfCharacter(response.data.count);
         })
-        .catch((err) => console.log(err));
+        .catch((error) => {
+          console.error(error);
+        });
     }
-    getCharacters(url);
+    fetchDataAllUrls(URLs);
   }, []);
 
-  const handleSearch = (event) => {
-    let value = event.target.value.toLowerCase();
+  const handleSearchbyName = (event) => {
+    let nameToBeSearched = event.target.value.toLowerCase();
     let result = [];
-    result = Characters.filter((data) => {
-      return (
-        data.name.toLowerCase().indexOf(value) > -1 ||
-        data.gender.toLowerCase() === value
-      );
+    result = Characters.filter((character) => {
+      return character.name.toLowerCase().indexOf(nameToBeSearched) > -1;
     });
     setCurrentPage(1);
-    setFilteredData(result);
-    settotalCharacters(result.length);
+    setsearchedByName(result);
+    setFilteredDataByGender(result);
+    setNumberOfCharacter(result.length);
+    document.getElementById("Filter-gender").selectedIndex = 0;
   };
+
+  const handleFilterByGender = (event) => {
+    let gender = event.target.value.toLowerCase();
+    if (gender === "male" || gender === "female" || gender === "n/a") {
+      let result = searchedByName ? searchedByName : Characters;
+      result = result.filter((charachterr) => {
+        return charachterr.gender.toLowerCase() === gender;
+      });
+      setCurrentPage(1);
+      setFilteredDataByGender(result);
+      setNumberOfCharacter(result.length);
+    } else if (searchedByName) setFilteredDataByGender(searchedByName);
+  };
+
   if (loading)
     return (
       <div className="section">
         <div className="lds-dual-ring">Loading...</div>
       </div>
     );
-  //Pagination
-  const indexOfLast = currentPage * charactersPerPage;
-  const indexOfFirstPost = indexOfLast - charactersPerPage;
-  const PagiData = filteredData.slice(indexOfFirstPost, indexOfLast);
 
   return (
     <div className="section">
       <div className="flex flex--space">
         <input
+          id="search"
           placeholder="Search by name"
           type="text"
           className="search"
-          onChange={(event) => handleSearch(event)}
+          onChange={(event) => {
+            handleSearchbyName(event);
+          }}
         />
         <select
-          name="genre"
+          name="gender"
+          id="Filter-gender"
           onChange={(ev) => {
-            handleSearch(ev);
+            handleFilterByGender(ev);
           }}
         >
-          <option value="">--Choose genre--</option>
+          <option value="">--Choose gender--</option>
           <option value="male">Male</option>
           <option value="female">Female</option>
           <option value="n/a">Droid</option>
         </select>
       </div>
       <div className="grid-container mb-16 mt-16">
-        {PagiData &&
-          PagiData.map((ch, index) => (
+        {PaginatedFiltredCharacters &&
+          PaginatedFiltredCharacters.map((character, index) => (
             <CardCharacter
               key={index}
-              char={ch}
-              id={ch.id}
-              name={ch.name}
-              planet={ch.homeworld}
+              char={character}
+              id={character.id}
+              name={character.name}
+              planet={character.homeworld}
             />
           ))}
       </div>
       <NavPagination
-        totalCharacters={totalCharacters}
+        numberOfCharacter={numberOfCharacter}
         charactersPerPage={charactersPerPage}
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
@@ -105,3 +140,8 @@ const Cards = () => {
 };
 
 export default Cards;
+
+function getIdByURL(url) {
+  let reg = url.match(/\/people\/(\d+)\//);
+  return parseInt(reg[1]);
+}

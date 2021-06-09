@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Header from "../layout/Header";
-import { getFavorites } from "../modules/favorites";
+import { getFavorites } from "../modules/favoritesFunctions";
 
 const Favorite = () => {
   const [Fav, setFav] = useState(getFavorites());

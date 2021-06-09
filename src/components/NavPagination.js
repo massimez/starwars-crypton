@@ -2,28 +2,28 @@ import React from "react";
 
 export const NavPagination = ({
   charactersPerPage,
-  totalCharacters,
+  numberOfCharacter,
   setCurrentPage,
   currentPage,
 }) => {
   const pageNumbers = [];
   let i = 1;
-  for (; i <= totalCharacters / charactersPerPage + 1; i++) {
+  for (; i <= numberOfCharacter / charactersPerPage + 1; i++) {
     pageNumbers.push(i);
   }
 
   return (
     <div className="flex flex--center">
       <div className="pagination center">
-        {pageNumbers.map((n) => (
+        {pageNumbers.map((pageNumber) => (
           <button
-            className={currentPage === n ? "active" : null}
-            key={n}
+            className={currentPage === pageNumber ? "active" : null}
+            key={pageNumber}
             onClick={() => {
-              setCurrentPage(n);
+              setCurrentPage(pageNumber);
             }}
           >
-            {n}
+            {pageNumber}
           </button>
         ))}
       </div>

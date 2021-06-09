@@ -1,22 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { IoMdHeart } from "react-icons/io";
-import { addToFavorite, getFavorites } from "../modules/favorites";
-import axios from 'axios'
+import { addToFavorite, getFavorites } from "../modules/favoritesFunctions";
+import axios from "axios";
 
 const CardCharacter = (props) => {
-  const [Fav, setFav] = useState(getFavorites());
-  const [homeland, sethomeland] = useState();
+  const [favorites, setFav] = useState(getFavorites());
+  const [homeland, setHomeland] = useState();
 
-  let __FOUND = Fav.find(function (post) {
+  let isInFavorites = favorites.find((post) => {
     if (post.name === props.name) return true;
     return false;
   });
-  axios(props.planet.slice(0, 4) + "s"+ props.planet.slice(4)).then(res => sethomeland(res.data.name))
+  //http to https
+  useEffect(() => {
+    axios(props.planet.slice(0, 4) + "s" + props.planet.slice(4)).then((res) =>
+      setHomeland(res.data.name)
+    );
+  }, [props.planet]);
+
   return (
     <>
       <div className="card">
         <img
-          src={`https://starwars-visualguide.com/assets/img/characters/${props.id>=17?props.id+1:props.id}.jpg`}
+          src={`https://starwars-visualguide.com/assets/img/characters/${props.id}.jpg`}
           alt="Avatar"
         />
         <div>
@@ -24,7 +30,7 @@ const CardCharacter = (props) => {
             <b>{props.name}</b>
           </h4>
           <p>{homeland}</p>
-          {__FOUND ? (
+          {isInFavorites ? (
             <div>
               <IoMdHeart className="card__icon--red" size="40px" />
             </div>
@@ -32,7 +38,7 @@ const CardCharacter = (props) => {
             <div
               onClick={() => {
                 addToFavorite(props.char);
-                setFav(getFavorites())
+                setFav(getFavorites());
               }}
             >
               <IoMdHeart className="card__icon--black" size="40px" />
